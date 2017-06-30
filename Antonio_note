@@ -1,0 +1,5 @@
+# Kinetic to fix
+
+include_directories(${catkin_INCLUDE_DIRS})
+
+# delete comments from worlds/simple.world

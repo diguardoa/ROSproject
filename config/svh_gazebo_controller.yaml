@@ -1,0 +1,107 @@
+svh:
+    # Publish all joint states -----------------------------------
+    joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 125
+
+       # Position controllers: Right Schunk Hand
+    right_hand_Thumb_Flexion_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: right_hand_Thumb_Flexion
+        #pid: {p: 0.6, i: 0.1, d: 2000.0}
+        pid: {p: 5.0, i: 0.1, d: 0.01}
+    right_hand_j3_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: right_hand_j3
+        #pid: {p: 0.6, i: 0.1, d: 2000.0}
+        pid: {p: 0.6, i: 0.1, d: 0.01}
+    right_hand_j4_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: right_hand_j4
+        #pid: {p: 0.6, i: 0.1, d: 2000.0}
+        pid: {p: 0.6, i: 0.1, d: 0.01}
+    right_hand_Thumb_Opposition_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: right_hand_Thumb_Opposition
+        #pid: {p: 0.6, i: 0.1, d: 2000.0}
+        pid: {p: 0.6, i: 0.1, d: 0.01}
+    right_hand_j5_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: right_hand_j5
+        #pid: {p: 0.6, i: 0.1, d: 2000.0}
+        pid: {p: 0.6, i: 0.1, d: 0.01}
+    right_hand_Index_Finger_Distal_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: right_hand_Index_Finger_Distal
+        #pid: {p: 0.6, i: 0.36, d: 1800.0}
+        pid: {p: 0.6, i: 0.36, d: 0.005}
+    right_hand_j14_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: right_hand_j14
+        #pid: {p: 0.6, i: 0.36, d: 1800.0}
+        pid: {p: 0.6, i: 0.36, d: 0.001}
+    right_hand_Index_Finger_Proximal_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: right_hand_Index_Finger_Proximal
+        #pid: {p: 0.2, i: 0.17, d: 1200.0}
+        pid: {p: 5.0, i: 0.17, d: 0.0120}
+    right_hand_Middle_Finger_Distal_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: right_hand_Middle_Finger_Distal
+        #pid: {p: 0.6, i: 0.36, d: 1800.0}
+        pid: {p: 0.6, i: 0.36, d: 0.001}
+    right_hand_j15_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: right_hand_j15
+        #pid: {p: 0.6, i: 0.36, d: 1800.0}
+        pid: {p: 0.6, i: 0.36, d: 0.001}
+    right_hand_Middle_Finger_Proximal_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: right_hand_Middle_Finger_Proximal
+        #pid: {p: 0.2, i: 0.17, d: 1200.0}
+        pid: {p: 5.0, i: 0.17, d: 0.0012}
+    right_hand_Ring_Finger_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: right_hand_Ring_Finger
+        #pid: {p: 1.2, i: 0.36, d: 1800.0}
+        pid: {p: 5.0, i: 0.36, d: 0.0018}
+    right_hand_j12_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: right_hand_j12
+        #pid: {p: 1.2, i: 0.36, d: 1800.0}
+        pid: {p: 1.2, i: 0.36, d: 0.0018}
+    right_hand_j16_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: right_hand_j16
+        #pid: {p: 1.2, i: 0.36, d: 1800.0}
+        pid: {p: 1.2, i: 0.36, d: 0.0018}
+    right_hand_Pinky_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: right_hand_Pinky
+        #pid: {p: 1.2, i: 0.36, d: 1800.0}
+        pid: {p: 5.0, i: 0.36, d: 0.0018}
+    right_hand_j13_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: right_hand_j13
+        #pid: {p: 1.2, i: 0.36, d: 1800.0}
+        pid: {p: 1.2, i: 0.36, d: 0.0018}
+    right_hand_j17_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: right_hand_j17
+        #pid: {p: 1.2, i: 0.36, d: 1800.0}
+        pid: {p: 1.2, i: 0.36, d: 0.0018}
+    right_hand_Finger_Spread_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: right_hand_Finger_Spread
+        #pid: {p: 1.0, i: 0.34, d: 4000.0}
+        pid: {p: 1.0, i: 0.34, d: 0.004}
+    right_hand_index_spread_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: right_hand_index_spread
+        #pid: {p: 1.0, i: 0.34, d: 4000.0}
+        pid: {p: 1.0, i: 0.34, d: 0.004}
+    right_hand_ring_spread_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: right_hand_ring_spread
+        #pid: {p: 1.0, i: 0.34, d: 4000.0}
+        pid: {p: 1.0, i: 0.34, d: 0.004}

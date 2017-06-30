@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/parallels/catkin_ws/src/schunk_svh_gazebo/install/setup.sh

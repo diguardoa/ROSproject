@@ -1,0 +1,35 @@
+<launch>
+    <!-- Load joint controller configurations from YAML file to parameter server -->
+    <rosparam file="$(find schunk_svh_gazebo)/config/svh_gazebo_controller.yaml" command="load"/>
+
+    <!-- load the controllers -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+        output="screen" ns="svh"
+        args="
+        right_hand_Thumb_Flexion_position_controller
+        right_hand_Thumb_Opposition_position_controller
+        right_hand_Index_Finger_Distal_position_controller
+        right_hand_Index_Finger_Proximal_position_controller
+        right_hand_Middle_Finger_Distal_position_controller
+        right_hand_Middle_Finger_Proximal_position_controller
+        right_hand_Ring_Finger_position_controller
+        right_hand_Pinky_position_controller
+        right_hand_Finger_Spread_position_controller
+        right_hand_j5_position_controller
+        right_hand_j3_position_controller
+        right_hand_j4_position_controller
+        right_hand_j14_position_controller
+        right_hand_j15_position_controller
+        right_hand_j12_position_controller
+        right_hand_j16_position_controller
+        right_hand_j13_position_controller
+        right_hand_j17_position_controller
+        right_hand_index_spread_position_controller
+        right_hand_ring_spread_position_controller
+        
+        joint_state_controller
+        "
+        >
+        <remap from="/robot_description" to="/robot_description_gazebo" />
+    </node>
+</launch>

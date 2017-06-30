@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="gazebo_contact" params="link_name">
+        <gazebo reference="${link_name}">                                                                            
+            <material>Gazebo/Blue</material>                                                                      
+            <mu1>0.70</mu1>
+            <mu2>0.70</mu2>
+
+            <minDepth>0.001</minDepth>
+            <maxVel>0.1</maxVel>
+
+            <kp>10000000.0</kp>
+            <kd>100000.0</kd>
+        </gazebo>                         
+    </xacro:macro>
+
+    <xacro:arg name="load_grasp_fix" default="false"/>                                                         
+    <xacro:if value="$(arg load_grasp_fix)">                                                                  
+        <xacro:include filename="$(find ur5_schunk_model)/robots/gzplugin_grasp_fix_ur5_schunk.xacro"/>        
+        <xacro:gzplugin_grasp_fix/>                                                                           
+    </xacro:if>
+    
+</robot>

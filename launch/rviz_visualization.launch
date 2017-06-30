@@ -1,0 +1,21 @@
+<launch>
+	<param name="robot_description" command="$(find xacro)/xacro.py $(find schunk_svh_gazebo)/description/urdf/svh_gazebo-standalone.urdf.xacro" />
+
+	<!-- Joint state publisher to provide easy control of the real hardware. Just enabled if you want to use it standalone to provide easy acces with sliders -->
+	<node name="input_joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+		<remap from="joint_states" to="svh_controller/channel_targets" />
+		<param name="use_gui" value="true"/>    
+	</node>
+
+	<!-- Joint state publisher is needed in order to use the mimic tag within the URDF (needed for propper visualization)-->
+	<node name="output_joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+		<rosparam param="source_list">["svh_controller/channel_targets"] </rosparam>
+	</node> 
+
+	<!-- RVIZ -->
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find schunk_svh_gazebo)/config/rviz.rviz"/>
+	
+	<!-- Robot state publisher for the TFs -->
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher">
+	</node>
+</launch>

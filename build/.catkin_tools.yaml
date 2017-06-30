@@ -1,0 +1,6 @@
+devel_space: /home/parallels/catkin_ws/src/schunk_svh_gazebo/devel
+install: false
+install_space: /home/parallels/catkin_ws/src/schunk_svh_gazebo/install
+profile: default
+source_space: /home/parallels/catkin_ws/src/schunk_svh_gazebo/src
+workspace: /home/parallels/catkin_ws/src/schunk_svh_gazebo

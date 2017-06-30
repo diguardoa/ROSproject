@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<robot name="svh" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find schunk_svh_gazebo)/description/urdf/svh_gazebo.urdf.xacro" />
+
+    <link name="interface_plate" >
+        <xacro:dummy_inertial />        
+    </link>
+
+    <xacro:svh parent="interface_plate" name="right_hand" side="1">
+        <origin xyz="0 0 0"  rpy= "0 0 0" />
+    </xacro:svh>
+
+    <!-- Gazebo configuration -->
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/svh</robotNamespace>
+            <robotParam>robot_description_gazebo</robotParam>
+        </plugin>
+    </gazebo>
+	<gazebo reference="base_link">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+	
+	<gazebo reference="interface_plate">
+		<static>true</static>
+	   	<gravity>false</gravity>
+    </gazebo>
+	<gazebo reference="svh">
+		<static>true</static>
+	   	<gravity>false</gravity>
+    </gazebo>
+
+    <xacro:arg name="load_grasp_fix" default="false"/>
+
+    <!--xacro:if value="$(arg load_grasp_fix)">
+        <xacro:include filename="$(find schunk_svh_gazebo)/desciption/gzplugin_grasp_fix_schunk_standalone.xacro"/>
+        <xacro:gzplugin_grasp_fix/>
+    </xacro:if--> 
+
+</robot>
