@@ -1,4 +1,5 @@
 # Kinetic to fix
+# add to CMakeList.txt
 
 include_directories(${catkin_INCLUDE_DIRS})
 
