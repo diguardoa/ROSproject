@@ -4,3 +4,6 @@
 include_directories(${catkin_INCLUDE_DIRS})
 
 # delete comments from worlds/simple.world
+
+
+# for no ROS expert: remember .launch execute 'roscore' command before launching
