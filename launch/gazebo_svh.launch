@@ -1,3 +1,5 @@
+<?xml version="1.0"?>
+
 <launch>
     <arg name="load_grasp_fix" default="false"/>
     
@@ -7,6 +9,15 @@
     <param name="use_sim_time" value="true"/>
 
     <param name="robot_description_gazebo" command="$(find xacro)/xacro.py $(find schunk_svh_gazebo)/description/urdf/svh_gazebo-standalone.urdf.xacro load_grasp_fix:=$(arg load_grasp_fix)" />
+
+    <param name="ostacolo" command="$(find xacro)/xacro.py $(find schunk_svh_gazebo)/description/urdf/cubo.urdf.xacro" />
+<!--
+    <param name="dlr_robot" command="$(find xacro)/xacro.py $(find schunk_svh_gazebo)/description/urdf/dlr_manipulator.urdf.xacro" />
+
+    <param name="dlr_robot_gazebo" command="$(find xacro)/xacro.py $(find schunk_svh_gazebo)/description/urdf/dlr_manipulator.urdf.xacro" />
+
+-->
+
     
     <!-- Per aggiungere in maniera agile qualcosa al mondo di gazebo-->
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -20,7 +31,20 @@
         -urdf -model svh
         -z 0.05
         " />
-    
+       <!-- 
+    <node name="spawn_urdf2" pkg="gazebo_ros" type="spawn_model" respawn="false" args="
+        -param ostacolo
+        -urdf -model cubo
+        -z 0.05
+        " />
+--><!--
+    <node name="spawn_urdf3" pkg="gazebo_ros" type="spawn_model" respawn="false" args="
+        -param dlr_robot_gazebo
+        -urdf -model dlr
+        -z 0.05
+        " />
+
+-->
     <!-- Launch the controllers using the controller manager -->
     <include file="$(find schunk_svh_gazebo)/launch/gazebo_controller.launch" />
 
@@ -32,5 +56,7 @@
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher">
         <!--remap from="/joint_states" to="/svh/joint_states"/-->
     </node>
+
+
 
 </launch>

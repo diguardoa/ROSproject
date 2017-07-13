@@ -2,6 +2,9 @@
 <robot name="svh" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <xacro:include filename="$(find schunk_svh_gazebo)/description/urdf/svh_gazebo.urdf.xacro" />
+<!--
+    <xacro:include filename="$(find schunk_svh_gazebo)/description/urdf/dlr_manipulator.urdf.xacro" />
+-->
 
     <link name="interface_plate" >
         <xacro:dummy_inertial />        
@@ -11,6 +14,41 @@
         <origin xyz="0 0 0"  rpy= "0 0 0" />
     </xacro:svh>
 
+    <link name="world"/>
+<!--
+    <joint name="fixed to ground" type="fixed">
+        <parent link="world" />
+        <child link = "link1" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+
+    <link name="link1">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.10"/>
+      <geometry>
+        <box size="0.05 0.05 0.20"/>
+      </geometry>
+      <material name="Red"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.10"/>
+      <geometry>
+        <box size="0.05 0.05 0.20"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="0.5" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+
+-->
+  <joint name="to_interface_plate" type="fixed">
+        <parent link="my_link7" />
+        <child link = "interface_plate" />
+        <origin xyz="0 0 ${link7_d}" rpy="0 0 0" />
+    </joint>
+
     <!-- Gazebo configuration -->
     <gazebo>
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
@@ -18,10 +56,10 @@
             <robotParam>robot_description_gazebo</robotParam>
         </plugin>
     </gazebo>
-	<gazebo reference="base_link">
+	<gazebo reference="interface_plate">
         <material>Gazebo/Blue</material>
     </gazebo>
-	
+	<!--
 	<gazebo reference="interface_plate">
 		<static>true</static>
 	   	<gravity>false</gravity>
@@ -30,6 +68,7 @@
 		<static>true</static>
 	   	<gravity>false</gravity>
     </gazebo>
+-->
 
     <xacro:arg name="load_grasp_fix" default="false"/>
 
@@ -39,3 +78,4 @@
     </xacro:if--> 
 
 </robot>
+

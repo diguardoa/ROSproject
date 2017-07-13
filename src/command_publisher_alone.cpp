@@ -33,6 +33,7 @@ int main(int argc, char** argv){
     sub_js = nh.subscribe("/svh_controller/channel_targets", 1000, subJointStatesCallback);
 
     //FIXME: do not give the names directly but read them from somewhere 
+    
     joint_commands_names.push_back("right_hand_Thumb_Flexion");
     joint_commands_names.push_back("right_hand_Thumb_Opposition");
     joint_commands_names.push_back("right_hand_j5");

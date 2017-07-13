@@ -858,5 +858,298 @@
         <xacro:gazebo_contact link_name="right_hand_d" />
 
     </xacro:macro>
+
+
+
+
+        <property name="deg_to_rad" value="0.01745329251994329577"/>
+
+    <property name="M_SCALE" value="0.001 0.001 0.001"/> 
+    <property name="M_PI" value="3.14159"/>
+
+    <property name="radious" value="0.02" />
+
+    <xacro:macro name="inertial_matrix" params="mass">
+      <inertial>
+        <mass value="${mass}" />
+        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="0.5" iyz="0.0" izz="1.0" />
+      </inertial>
+    </xacro:macro>
+
+   <xacro:macro name="transmission_block" params="joint_name">
+      <transmission name="${joint_name}_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="${joint_name}">
+          <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="${joint_name}_motor">
+          <hardwareInterface>EffortJointInterface</hardwareInterface>
+          <mechanicalReduction>100</mechanicalReduction>
+        </actuator>
+      </transmission>
+   </xacro:macro>
+
+    <property name="link1_alpha" value="${-M_PI/2}" />
+    <property name="link1_d" value="0.0001" />
+    <property name="link1_a" value="0" />
+
+    <property name="link2_alpha" value="${M_PI/2}" />
+    <property name="link2_d" value="0" />
+    <property name="link2_a" value="0" />
+
+    <property name="link3_alpha" value="${-M_PI/2}" />
+    <property name="link3_d" value="1" />
+    <property name="link3_a" value="0" />
+
+    <property name="link4_alpha" value="${M_PI/2}" />
+    <property name="link4_d" value="0" />
+    <property name="link4_a" value="0" />
+
+    <property name="link5_alpha" value="${M_PI/2}" />
+    <property name="link5_d" value="1" />
+    <property name="link5_a" value="0" />
+
+    <property name="link6_alpha" value="${-M_PI/2}" />
+    <property name="link6_d" value="0" />
+    <property name="link6_a" value="0" />
+
+    <property name="link7_alpha" value="${M_PI/2}" />
+    <property name="link7_d" value="1" />
+    <property name="link7_a" value="0" />
+
+    <property name="box_size" value="0.001" />
+
+
+    
+    <!-- Anthropomorphic Arm -->
+
+<!--
+     <link name="world2"/> 
+-->
+    <joint name="fixed to arm" type="fixed">
+        <parent link="world" />
+        <child link = "link1" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+
+     <link name="link1">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.001"/>
+      <geometry>
+        <box size="0.1 0.1  0.01"/>
+      </geometry>
+      <material name="Red"/>
+    </visual>
+    <inertial>
+      <mass value="1"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="0.5" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+
+    <joint name="my_joint_1" type="revolute">
+        <parent link="link1"/>
+        <child link="my_link1"/>
+        <origin xyz="0.00001    0.00001 0.01" rpy="0 0 0" />
+        <axis xyz="0 0 1" />
+        <limit effort="1000" velocity="1000" lower="${-M_PI}" upper="${M_PI}"/>
+    </joint>
+
+
+    <link name="my_link1" >
+        <visual>
+            <origin xyz="0.0001 0.0001  ${link1_d/2}" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="${radious}" length="${link1_d}"/>
+            </geometry>
+            <material name="Red" />
+        </visual>
+        <xacro:inertial_matrix mass = "0.0001"/>
+
+    </link>
+
+
+    <joint name="my_joint_2" type="revolute">
+        <parent link="my_link1"/>
+        <child link="my_link2"/>
+        <origin xyz="0 0 ${link1_d}" rpy="${link1_alpha} 0 0" />
+        <axis xyz="0 0 1" />
+        <limit effort="1000" velocity="1000" lower="${-M_PI}" upper="${M_PI}"/>
+    </joint>
+
+    <link name="my_link2" >
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="${box_size} ${box_size} ${box_size}" />
+            </geometry>
+            <material name="Red" />
+        </visual>
+        <xacro:inertial_matrix mass = "0.0001"/>
+
+    </link>
+
+      <gazebo reference="my_link2">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+    <joint name="my_joint_3" type="revolute">
+        <parent link="my_link2"/>
+        <child link="my_link3"/>
+        <origin xyz="0 0 0" rpy="${link2_alpha} 0 0" />
+        <axis xyz="0 0 1" />
+        <limit effort="1000" velocity="1000" lower="${-M_PI}" upper="${M_PI}"/>
+    </joint>
+
+    <link name="my_link3" >
+        <visual>
+            <origin xyz="0 0 ${link3_d/2}" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="${radious}" length="${link3_d}"/>
+            </geometry>
+            <material name="Red" />
+        </visual>
+        <collision>
+            <origin xyz="0 0 ${link3_d/2}" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="${radious}" length="${link3_d}"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_matrix mass="1"/>
+    </link>
+
+      <gazebo reference="my_link3">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+    <joint name="my_joint_4" type="revolute">
+        <parent link="my_link3"/>
+        <child link="my_link4"/>
+        <origin xyz="0 0 ${link3_d}" rpy="${link3_alpha} 0 0" />
+        <axis xyz="0 0 1" />
+        <limit effort="1000" velocity="1000" lower="${-M_PI}" upper="${M_PI}"/>
+    </joint>
+
+    <link name="my_link4" >
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="${box_size} ${box_size} ${box_size}" />
+            </geometry>
+            <material name="Red" />
+        </visual>
+        <xacro:inertial_matrix mass = "0.00001"/>
+
+    </link>
+
+      <gazebo reference="my_link4">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+    <joint name="my_joint_5" type="revolute">
+        <parent link="my_link4"/>
+        <child link="my_link5"/>
+        <origin xyz="0 0 0" rpy="${link4_alpha} 0 0" />
+        <axis xyz="0 0 1" />
+        <limit effort="1000" velocity="1000" lower="${-M_PI}" upper="${M_PI}"/>
+    </joint>
+
+    <link name="my_link5" >
+        <visual>
+            <origin xyz="0 0 ${link5_d/2}" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="${radious}" length="${link5_d}"/>
+            </geometry>
+            <material name="Red" />
+        </visual>
+        <collision>
+            <origin xyz="0 0 ${link5_d/2}" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="${radious}" length="${link5_d}"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_matrix mass="1"/>
+    </link>
+
+      <gazebo reference="my_link5">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+    <joint name="my_joint_6" type="revolute">
+        <parent link="my_link5"/>
+        <child link="my_link6"/>
+        <origin xyz="0 0 ${link5_d}" rpy="${link5_alpha} 0 0" />
+        <axis xyz="0 0 1" />
+        <limit effort="1000" velocity="1000" lower="${-M_PI}" upper="${M_PI}"/>
+    </joint>
+
+    <link name="my_link6" >
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="${box_size} ${box_size} ${box_size}" />
+            </geometry>
+            <material name="Red" />
+        </visual>
+        <xacro:inertial_matrix mass="0.0001"/>
+
+    </link>
+
+  <gazebo reference="my_link6">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+    <joint name="my_joint_7" type="revolute">
+        <parent link="my_link6"/>
+        <child link="my_link7"/>
+        <origin xyz="0 0 ${link6_d}" rpy="${link6_alpha} 0 0" />
+        <axis xyz="0 0 1" />
+        <limit effort="1000" velocity="1000" lower="${-M_PI}" upper="${M_PI}"/>
+
+    </joint>
+
+    <link name="my_link7" >
+        <visual>
+            <origin xyz="0 0 ${link7_d/2}" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="${radious}" length="${link7_d}"/>
+            </geometry>
+            <material name="Red" />
+        </visual>
+        <collision>
+            <origin xyz="0 0 ${link7_d/2}" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="${radious}" length="${link7_d}"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_matrix mass="1"/>
+    </link>
+
+    <gazebo reference="my_link7">
+        <material>Gazebo/White</material>
+    </gazebo>
+
+
+   <xacro:transmission_block joint_name="my_joint_1"/>    
+   <xacro:transmission_block joint_name="my_joint_2"/>
+   <xacro:transmission_block joint_name="my_joint_3"/>
+   <xacro:transmission_block joint_name="my_joint_4"/>
+   <xacro:transmission_block joint_name="my_joint_5"/>
+   <xacro:transmission_block joint_name="my_joint_6"/>
+   <xacro:transmission_block joint_name="my_joint_7"/>
+
+<gazebo>
+    <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
+    <alwaysOn>true</alwaysOn>
+    <updateRate>100.0</updateRate>
+    <bodyName>my_link7</bodyName>
+    <topicName>base_pose_ground_truth</topicName>
+    <gaussianNoise>0</gaussianNoise>
+    <frameName>map</frameName>
+    <xyzOffsets>0 0 0</xyzOffsets> 
+    <rpyOffsets>0 0 0</rpyOffsets>
+   <!-- <interface:position name="p3d_base_position"/>-->
+  </plugin>
+</gazebo>
+
 </robot>
 

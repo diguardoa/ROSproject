@@ -1,0 +1,20 @@
+# Kinetic to fix
+# add to CMakeList.txt
+
+include_directories(${catkin_INCLUDE_DIRS})
+
+# delete comments from worlds/simple.world
+
+
+# for no ROS expert: remember .launch execute 'roscore' command before launching
+
+## Note sul pacchetto:
+in pratica il tizio ha scritto l' *urdf per poter simulare la dinamica della mano. 
+Come scritto più volte nel file stesso, molti dati sono stati presi "a caso", nel senso 
+che non essendo stati presi dal datasheet sono stati da lui ipotizzati (usando simulazioni?)
+
+La sottoattuazione è specificata usando i tag "mimic" all'interno dell'urdf stesso.
+Il tag mimic viene letto (nel progetto originale) dal nodo 'input_joint_state_publisher'
+per visualizzare quali sono i parametri indipendenti e lavorare direttamente da quelli. 
+
+Il tag mimic non è be

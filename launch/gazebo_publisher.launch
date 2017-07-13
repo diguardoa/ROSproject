@@ -1,13 +1,15 @@
+<?xml version="1.0"?>
+
 <launch>
 
 	<!-- Joint state publisher to provide easy control of the real hardware. Just enabled if you want to use it standalone to provide easy acces with sliders -->
 	
-	<!-- LET'S TRY 
+	<!-- LET'S TRY  -->
 	<node name="input_joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
 		<remap from="joint_states" to="svh_controller/channel_targets" />
 		<param name="use_gui" value="true"/>    
 	</node>
-	-->
+	
 	<!-- Joint state publisher is needed in order to use the mimic tag within the URDF (needed for propper visualization)-->
 
 	<!-- LET'S TRY -->
@@ -20,6 +22,11 @@
 	<!--
 	<node name="dummy_robot_control" pkg="schunk_svh_gazebo" type="schunk_svh_gazebo_node"/>
 	-->
-	<!-- RVIZ 
-	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find schunk_svh_gazebo)/config/rviz.rviz"/> -->
+
+	<node name="simulated_controller_interface" pkg="schunk_svh_gazebo" type="command_publisher_node"/>
+
+	<!-- RVIZ -->
+	<!--
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find schunk_svh_gazebo)/config/rviz.rviz"/>
+	-->
 </launch>

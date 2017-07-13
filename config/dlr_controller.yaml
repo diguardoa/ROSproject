@@ -1,0 +1,43 @@
+dlr:
+       # Position controllers: Right Schunk Hand
+    my_joint_1_controller:
+        type: effort_controllers/JointPositionController
+        joint: my_joint_1
+        #pid: {p: 0.6, i: 0.1, d: 2000.0}
+        pid: {p: 5.0, i: 0.1, d: 0.01}
+        
+            my_joint_1_controller:
+        type: effort_controllers/JointPositionController
+        joint: my_joint_1
+        #pid: {p: 0.6, i: 0.1, d: 2000.0}
+        pid: {p: 5.0, i: 0.1, d: 0.01}
+            my_joint_1_controller:
+        type: effort_controllers/JointPositionController
+        joint: my_joint_1
+        #pid: {p: 0.6, i: 0.1, d: 2000.0}
+        pid: {p: 5.0, i: 0.1, d: 0.01}
+            my_joint_1_controller:
+        type: effort_controllers/JointPositionController
+        joint: my_joint_1
+        #pid: {p: 0.6, i: 0.1, d: 2000.0}
+        pid: {p: 5.0, i: 0.1, d: 0.01}
+            my_joint_1_controller:
+        type: effort_controllers/JointPositionController
+        joint: my_joint_1
+        #pid: {p: 0.6, i: 0.1, d: 2000.0}
+        pid: {p: 5.0, i: 0.1, d: 0.01}
+            my_joint_1_controller:
+        type: effort_controllers/JointPositionController
+        joint: my_joint_1
+        #pid: {p: 0.6, i: 0.1, d: 2000.0}
+        pid: {p: 5.0, i: 0.1, d: 0.01}
+            my_joint_1_controller:
+        type: effort_controllers/JointPositionController
+        joint: my_joint_1
+        #pid: {p: 0.6, i: 0.1, d: 2000.0}
+        pid: {p: 5.0, i: 0.1, d: 0.01}
+            my_joint_1_controller:
+        type: effort_controllers/JointPositionController
+        joint: my_joint_1
+        #pid: {p: 0.6, i: 0.1, d: 2000.0}
+        pid: {p: 5.0, i: 0.1, d: 0.01}

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="load_grasp_fix" default="false"/>
+    
+    <param name="robot_description" command="$(find xacro)/xacro.py $(find schunk_svh_gazebo)/description/urdf/svh_gazebo-standalone.urdf.xacro load_grasp_fix:=$(arg load_grasp_fix)" />
+    
+    <!-- Set this parameter to true if you are using gazebo simulation (physics)-->
+    <param name="use_sim_time" value="true"/>
+
+    <param name="robot_description_gazebo" command="$(find xacro)/xacro.py $(find schunk_svh_gazebo)/description/urdf/svh_gazebo-standalone.urdf.xacro load_grasp_fix:=$(arg load_grasp_fix)" />
+
+    <param name="ostacolo" command="$(find xacro)/xacro.py $(find schunk_svh_gazebo)/description/urdf/cubo.urdf.xacro" />
+    
+    <!-- Per aggiungere in maniera agile qualcosa al mondo di gazebo-->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find schunk_svh_gazebo)/worlds/simple.world"/>
+        <arg name="paused" value="true" />
+    </include>
+
+	<!-- E il nodo che fa partire Gazebo e prende come parametro il modello -->
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" respawn="false" args="
+        -param robot_description_gazebo
+        -urdf -model svh
+        -z 0.05
+        " />
+
+    <!-- Launch the controllers using the controller manager -->
+    <include file="$(find schunk_svh_gazebo)/launch/gazebo_controller.launch" />
+
+   <!-- Robot state publisher for the TFs 
+   The robot state publisher package helps to publish the state of the robot to tf.
+   This package subscribes to joint states of the robot and publishes the 3D pose 
+   of each link using the kinematic representation from the URDF model-->
+   
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher">
+        <!--<remap from="/joint_states" to="/svh/joint_states"/-->
+    </node>
+
+</launch>

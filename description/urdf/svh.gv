@@ -1,0 +1,113 @@
+digraph G {
+node [shape=box];
+"interface_plate" [label="interface_plate"];
+"right_hand_base_link" [label="right_hand_base_link"];
+"right_hand_e1" [label="right_hand_e1"];
+"right_hand_z" [label="right_hand_z"];
+"right_hand_virtual_a" [label="right_hand_virtual_a"];
+"right_hand_a" [label="right_hand_a"];
+"right_hand_b" [label="right_hand_b"];
+"right_hand_c" [label="right_hand_c"];
+"right_hand_thumb_tip_ee" [label="right_hand_thumb_tip_ee"];
+"right_hand_d" [label="right_hand_d"];
+"right_hand_h" [label="right_hand_h"];
+"right_hand_d2" [label="right_hand_d2"];
+"right_hand_virtual_l" [label="right_hand_virtual_l"];
+"right_hand_l" [label="right_hand_l"];
+"right_hand_p" [label="right_hand_p"];
+"right_hand_t" [label="right_hand_t"];
+"right_hand_index_tip_ee" [label="right_hand_index_tip_ee"];
+"right_hand_virtual_k" [label="right_hand_virtual_k"];
+"right_hand_k" [label="right_hand_k"];
+"right_hand_o" [label="right_hand_o"];
+"right_hand_s" [label="right_hand_s"];
+"right_hand_middle_tip_ee" [label="right_hand_middle_tip_ee"];
+"right_hand_e2" [label="right_hand_e2"];
+"right_hand_e3" [label="right_hand_e3"];
+"right_hand_e" [label="right_hand_e"];
+"right_hand_e4" [label="right_hand_e4"];
+"right_hand_virtual_i" [label="right_hand_virtual_i"];
+"right_hand_i" [label="right_hand_i"];
+"right_hand_m" [label="right_hand_m"];
+"right_hand_q" [label="right_hand_q"];
+"right_hand_pinky_tip_ee" [label="right_hand_pinky_tip_ee"];
+"right_hand_e5" [label="right_hand_e5"];
+"right_hand_virtual_j" [label="right_hand_virtual_j"];
+"right_hand_j" [label="right_hand_j"];
+"right_hand_n" [label="right_hand_n"];
+"right_hand_r" [label="right_hand_r"];
+"right_hand_ring_tip_ee" [label="right_hand_ring_tip_ee"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"interface_plate" -> "right_hand_base_joint" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"right_hand_base_joint" -> "right_hand_base_link"
+"right_hand_base_link" -> "right_hand_f4" [label="xyz: 0 -0.01313 0 \nrpy: 0 -0 0"]
+"right_hand_f4" -> "right_hand_e1"
+"right_hand_e1" -> "right_hand_Thumb_Opposition" [label="xyz: -0.0169 0.02626 0 \nrpy: 0 0.2618 1.571"]
+"right_hand_Thumb_Opposition" -> "right_hand_z"
+"right_hand_z" -> "right_hand_Thumb_Helper" [label="xyz: 0 0 0.04596 \nrpy: 0 -1.5708 3.1416"]
+"right_hand_Thumb_Helper" -> "right_hand_virtual_a"
+"right_hand_virtual_a" -> "right_hand_Thumb_Flexion" [label="xyz: 0 0 0 \nrpy: 0 0 -0.9704"]
+"right_hand_Thumb_Flexion" -> "right_hand_a"
+"right_hand_a" -> "right_hand_j3" [label="xyz: 0.0485 0 0 \nrpy: 0 -0 0"]
+"right_hand_j3" -> "right_hand_b"
+"right_hand_b" -> "right_hand_j4" [label="xyz: 0.03 0 0 \nrpy: 0 -0 0"]
+"right_hand_j4" -> "right_hand_c"
+"right_hand_c" -> "right_hand_thumb_tip_joint" [label="xyz: 0.012 0.01 0 \nrpy: 0 -0 0"]
+"right_hand_thumb_tip_joint" -> "right_hand_thumb_tip_ee"
+"right_hand_e1" -> "right_hand_f1" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"right_hand_f1" -> "right_hand_d"
+"right_hand_d" -> "right_hand_f2" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"right_hand_f2" -> "right_hand_h"
+"right_hand_h" -> "right_hand_f3" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"right_hand_f3" -> "right_hand_d2"
+"right_hand_d2" -> "right_hand_index_spread" [label="xyz: -0.025 0 0.11 \nrpy: 0 -1.5708 1.5707"]
+"right_hand_index_spread" -> "right_hand_virtual_l"
+"right_hand_virtual_l" -> "right_hand_Index_Finger_Proximal" [label="xyz: 0 0 0 \nrpy: -1.5707 0 0"]
+"right_hand_Index_Finger_Proximal" -> "right_hand_l"
+"right_hand_l" -> "right_hand_Index_Finger_Distal" [label="xyz: 0.04804 0 0 \nrpy: 0 -0 0"]
+"right_hand_Index_Finger_Distal" -> "right_hand_p"
+"right_hand_p" -> "right_hand_j14" [label="xyz: 0.026 0 0 \nrpy: 0 -0 0"]
+"right_hand_j14" -> "right_hand_t"
+"right_hand_t" -> "right_hand_index_tip_joint" [label="xyz: 0.012 0.007 0 \nrpy: 0 -0 0"]
+"right_hand_index_tip_joint" -> "right_hand_index_tip_ee"
+"right_hand_d" -> "right_hand_middle_spread_dummy" [label="xyz: 0 0 0.11 \nrpy: 0 -1.5708 1.5707"]
+"right_hand_middle_spread_dummy" -> "right_hand_virtual_k"
+"right_hand_virtual_k" -> "right_hand_Middle_Finger_Proximal" [label="xyz: 0 0 0 \nrpy: -1.5707 0 0"]
+"right_hand_Middle_Finger_Proximal" -> "right_hand_k"
+"right_hand_k" -> "right_hand_Middle_Finger_Distal" [label="xyz: 0.05004 0 0 \nrpy: 0 -0 0"]
+"right_hand_Middle_Finger_Distal" -> "right_hand_o"
+"right_hand_o" -> "right_hand_j15" [label="xyz: 0.032 0 0 \nrpy: 0 -0 0"]
+"right_hand_j15" -> "right_hand_s"
+"right_hand_s" -> "right_hand_middle_tip_joint" [label="xyz: 0.012 0.007 0 \nrpy: 0 -0 0"]
+"right_hand_middle_tip_joint" -> "right_hand_middle_tip_ee"
+"right_hand_e1" -> "right_hand_j5" [label="xyz: 0.0184 0.006 0.0375 \nrpy: 0 -0 0"]
+"right_hand_j5" -> "right_hand_e2"
+"right_hand_e2" -> "right_hand_f5" [label="xyz: 0 -0.006 0 \nrpy: 0 -0 0"]
+"right_hand_f5" -> "right_hand_e3"
+"right_hand_e3" -> "right_hand_f6" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"right_hand_f6" -> "right_hand_e"
+"right_hand_e" -> "right_hand_f7" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"right_hand_f7" -> "right_hand_e4"
+"right_hand_e4" -> "right_hand_Finger_Spread" [label="xyz: 0.025355 0 0.056 \nrpy: 0 -1.5708 -1.5708"]
+"right_hand_Finger_Spread" -> "right_hand_virtual_i"
+"right_hand_virtual_i" -> "right_hand_Pinky" [label="xyz: 0 0 0 \nrpy: 1.5707 -0 0"]
+"right_hand_Pinky" -> "right_hand_i"
+"right_hand_i" -> "right_hand_j13" [label="xyz: 0.04454 0 0 \nrpy: 0 -0 0"]
+"right_hand_j13" -> "right_hand_m"
+"right_hand_m" -> "right_hand_j17" [label="xyz: 0.022 0 0 \nrpy: 0 -0 0"]
+"right_hand_j17" -> "right_hand_q"
+"right_hand_q" -> "right_hand_pinky_tip_joint" [label="xyz: 0.012 0.007 0 \nrpy: 0 -0 0"]
+"right_hand_pinky_tip_joint" -> "right_hand_pinky_tip_ee"
+"right_hand_e" -> "right_hand_f8" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"right_hand_f8" -> "right_hand_e5"
+"right_hand_e5" -> "right_hand_ring_spread" [label="xyz: 0.003855 0 0.0655 \nrpy: 0 -1.5708 -1.5708"]
+"right_hand_ring_spread" -> "right_hand_virtual_j"
+"right_hand_virtual_j" -> "right_hand_Ring_Finger" [label="xyz: 0 0 0 \nrpy: 1.5707 -0 0"]
+"right_hand_Ring_Finger" -> "right_hand_j"
+"right_hand_j" -> "right_hand_j12" [label="xyz: 0.05004 0 0 \nrpy: 0 -0 0"]
+"right_hand_j12" -> "right_hand_n"
+"right_hand_n" -> "right_hand_j16" [label="xyz: 0.032 0 0 \nrpy: 0 -0 0"]
+"right_hand_j16" -> "right_hand_r"
+"right_hand_r" -> "right_hand_ring_tip_joint" [label="xyz: 0.012 0.007 0 \nrpy: 0 -0 0"]
+"right_hand_ring_tip_joint" -> "right_hand_ring_tip_ee"
+}
